@@ -70,13 +70,13 @@ module.exports = {
     // expose the interface for the host app to instantiate
     new VueLoaderPlugin() // expose the interface for the client to use
   ],
-  optimization: {
-    minimize: true, // minimize the bundles using UglifyjsWebpackPlugin
-    splitChunks: { // split common chunks(node modules) for multiple dependencies
-      chunks: 'all', // for all chunks
-      // name: 'vue-element-ui' // the name of the split chunk
-    }
-  },
+  // optimization: {
+  //   minimize: true, // minimize the bundles using UglifyjsWebpackPlugin
+  //   splitChunks: { // split chunks for multiple dependencies
+  //     chunks: 'all', // for all chunks
+  //     // name: 'vue-element-ui' // the name of the split chunk
+  //   }
+  // },
   resolve: { // module resolve opt
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
