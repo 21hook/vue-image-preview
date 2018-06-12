@@ -3,7 +3,7 @@
 > An image preview component based on Vue
 
 ## 
-[demo](/index.html)
+[Demo](https://21hook.github.io/vue-image-preview/)
 
 ## Build Setup
 
