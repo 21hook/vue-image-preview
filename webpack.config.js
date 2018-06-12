@@ -1,42 +1,21 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  entry: './src/main.js',
+  mode: 'development',// default env
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'vue-img-preview.min.js'
   },
   module: {
     rules: [
-      { // module matching rules; importing .css in .vue
-        test: /\.css$/, // all .css files
-        use: [ // use the loaders
-          'vue-style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader?indentedSyntax'
-        ],
-      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
+        options: { // opt for the loader
           loaders: {
             // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
             // the "scss" and "sass" values for the lang attribute to the right configs here.
@@ -55,10 +34,21 @@ module.exports = {
           // other vue-loader options go here
         }
       },
+      // load external styles
+      // & <style> block in .vue files into internal styles
+      {
+        test: /\.css$/,
+        loader: ['vue-style-loader', 'css-loader'],
+      },
+      // transform ES6 & <script> block in .js files
+      // into the ES5 file
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+         exclude: /node_modules/, // exclude the path; file tree traversal
+        options: {
+          presets: ['es2015'] // transform rule: ES6
+        }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -75,6 +65,17 @@ module.exports = {
         }
       }
     ]
+  },
+  plugins: [
+    // expose the interface for the host app to instantiate
+    new VueLoaderPlugin() // expose the interface for the client to use
+  ],
+  optimization: {
+    minimize: true, // minimize the bundles using UglifyjsWebpackPlugin
+    splitChunks: { // split common chunks(node modules) for multiple dependencies
+      chunks: 'all', // for all chunks
+      // name: 'vue-element-ui' // the name of the split chunk
+    }
   },
   resolve: { // module resolve opt
     alias: {
@@ -94,6 +95,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('inner hi')
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
@@ -102,14 +104,9 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
   ])
 }
+console.log('hi');

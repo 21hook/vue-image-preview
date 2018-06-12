@@ -2,6 +2,9 @@
 
 > An image preview component based on Vue
 
+## 
+[demo](/index.html)
+
 ## Build Setup
 
 ``` bash
@@ -15,4 +18,29 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Usage
+
+```
+// import as ES6 module
+import VueImagePreview from 'vue-image-preview'
+
+// require as Node module
+var VueImagePreview = require('vue-image-preview')
+
+// then, install the plugin
+Vue.use(VueImagePreview)
+
+// load as JS file
+<script src="unpack.js/"></script>
+```
+
+## Props
+ name | type | default | description
+------| ---  |--------|-------------
+visible | Boolean | true   | visibility of the image preview dialog 
+imgSrc  | Array | -     |  a list of image URLs
+currentIndex | Number | 0 | the current index for the list of images
+
+
+## License
+MIT

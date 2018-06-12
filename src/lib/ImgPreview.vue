@@ -29,21 +29,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { Dialog } from 'element-ui'
+Vue.use(ELEMENT.Dialog); // refer to the global variables(Vue, ELEMENT); install the ELEMENT>Dialog plugin
 
-Vue.use(Dialog);
-export default {
+export default { // export to the global scope for ES6 Module & script tag
     name: "ImgPreview",
     props: {
       visible: {
         type: Boolean,
-        default: false,
-        required: true
+        default: true
       },
       imgSrc: {
         type: Array,
-        default: []
+        default: ['']
       },
       currentIndex: {
         type: Number,
@@ -110,16 +107,20 @@ export default {
     watch: {
       currentIndex() {
         this.currentPos = this.currentIndex
+      },
+      visible() {
+        this.dialogVisible = this.visible
       }
+
     },
     data() {
-      const dialogVisible = this.visible;
+      // const dialogVisible = this.visible;
 
       return {
         currentPos: 0,
         activeLeft: false,
         activeRight: true,
-        dialogVisible,
+        dialogVisible: false,
       }
     }
 }
