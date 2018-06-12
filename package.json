@@ -1,10 +1,10 @@
 {
-  "name": "vue-image-preview",
+  "name": "vue2-image-preview",
   "description": "An image preview component based on Vue",
+  "keywords": ["vue2", "image preview", "dialog"],
   "version": "1.0.0",
   "author": "21hook <2765049749@qq.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
