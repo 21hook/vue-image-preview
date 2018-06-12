@@ -10,6 +10,7 @@
   "author": "21hook <2765049749@qq.com>",
   "license": "MIT",
   "unpkg": "dist/vue-img-preview.min.js",
+  "repository": "github:21hook/vue-image-preview",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
