@@ -6,7 +6,7 @@
     "image preview",
     "dialog"
   ],
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "21hook <2765049749@qq.com>",
   "license": "MIT",
   "unpkg": "dist/vue-img-preview.min.js",
